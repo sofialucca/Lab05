@@ -30,9 +30,14 @@
                   <Button fx:id="bttnAnagramma" mnemonicParsing="false" onAction="#doAnagramma" text="Calcola Anagrammi" />
                </children>
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets bottom="5.0" />
                </VBox.margin>
             </HBox>
+            <Label fx:id="labelErroreInput" textFill="RED">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Label>
             <Label text="Anagrammi corretti:">
                <VBox.margin>
                   <Insets bottom="20.0" />
@@ -53,7 +58,7 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </TextArea>
-            <Button fx:id="bttnReset" mnemonicParsing="false" onAction="#doReset" text="Reset" />
+            <Button fx:id="bttnReset" disable="true" mnemonicParsing="false" onAction="#doReset" text="Reset" />
          </children>
          <BorderPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
