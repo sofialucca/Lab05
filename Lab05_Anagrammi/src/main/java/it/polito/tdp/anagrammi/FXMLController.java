@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import it.polito.tdp.anagrammi.model.Anagramma;
 import it.polito.tdp.anagrammi.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,7 +32,7 @@ public class FXMLController {
     private TextArea txtCorretti;
 
     @FXML
-    private TextArea txtErratti;
+    private TextArea txtErrati;
 
     @FXML
     private Button bttnReset;
@@ -44,15 +45,19 @@ public class FXMLController {
     	this.bttnReset.setDisable(false);
     	String input=this.txtInput.getText();
     	this.txtCorretti.clear();
-    	this.txtErratti.clear();
+    	this.txtErrati.clear();
     	if(!isCorretta(input)) {
     		this.labelErroreInput.setText("ERRORE: input non valido");
     		return;
     	}
     	input=input.toLowerCase();
-    	List<String>anagrammi= model.anagrammi(input);
-    	for(String s:anagrammi) {
-    		txtCorretti.appendText(s+"\n");
+    	List<Anagramma>anagrammi= model.anagrammi(input);
+    	for(Anagramma a:anagrammi) {
+    		if(a.isCorretta()) {
+    			txtCorretti.appendText(a.toString()+"\n");
+    		}else {
+    			txtErrati.appendText(a.toString()+"\n");
+    		}
     	}
     	this.labelErroreInput.setText(null);
     }
@@ -69,7 +74,7 @@ public class FXMLController {
 	@FXML
     void doReset(ActionEvent event) {
 		this.txtCorretti.clear();
-		this.txtErratti.clear();
+		this.txtErrati.clear();
 		this.txtInput.clear();
 		this.labelErroreInput.setText(null);
 		this.bttnReset.setDisable(true);
@@ -80,7 +85,7 @@ public class FXMLController {
         assert txtInput != null : "fx:id=\"txtInput\" was not injected: check your FXML file 'Scene.fxml'.";
         assert bttnAnagramma != null : "fx:id=\"bttnAnagramma\" was not injected: check your FXML file 'Scene.fxml'.";
         assert txtCorretti != null : "fx:id=\"txtCorretti\" was not injected: check your FXML file 'Scene.fxml'.";
-        assert txtErratti != null : "fx:id=\"txtErratti\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert txtErrati != null : "fx:id=\"txtErratti\" was not injected: check your FXML file 'Scene.fxml'.";
         assert bttnReset != null : "fx:id=\"bttnReset\" was not injected: check your FXML file 'Scene.fxml'.";
         assert labelErroreInput != null : "fx:id=\"labelErroreInput\" was not injected: check your FXML file 'Scene.fxml'.";
     }
