@@ -13,6 +13,7 @@ public class Model {
 		List<Anagramma> risultato=new LinkedList<>();
 		String parziale="";
 		ricorsiva(risultato, stringa,parziale);
+		risultato.remove(new Anagramma(stringa,true));
 		return risultato;
 	}
 
